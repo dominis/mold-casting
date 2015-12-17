@@ -107,8 +107,5 @@ brew tap caskroom/versions
 echo "please setup dropbox"
 read -p "Press enter to continue"
 
-
-
-
 sudo pip install mackup
 mackup restore

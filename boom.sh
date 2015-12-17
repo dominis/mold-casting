@@ -38,7 +38,7 @@ fi
 
 # intall dotfiles
 echo "installing dotfiles"
-git clone https://github.com/dominis/dotfiles ~/.dotfiles
+git clone git@github.com:dominis/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install.sh
 ./.osx

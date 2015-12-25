@@ -44,8 +44,9 @@ if test ! -d ~/.dotfiles ; then
 fi
 
 # brew
+brew doctor
 brew update
-
+brew upgrade
 brew tap homebrew/dupes
 brew tap homebrew/completions
 
@@ -105,8 +106,10 @@ apps=(
   numi
   spotifree
   vagrant-bar
-  cocounutbattery
+  coconutbattery
   forklift
+  evernote
+  send-to-kindle
 )
 
 echo "installing apps..."
@@ -118,5 +121,6 @@ echo "please setup dropbox"
 read -p "Press enter to continue"
 
 sudo easy_install pip
-sudo pip install mackup
-mackup restore
+pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+pip install mackup
+mackup restore -f

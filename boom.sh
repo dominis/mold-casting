@@ -61,7 +61,6 @@ binaries=(
   pwgen
   curl
   dos2unix
-  gnu-tar
   coreutils
   findutils
   diffutils
@@ -77,12 +76,26 @@ binaries=(
   pip-completion
   terraform
   packer
+  wget
+  watch
+  screen
+  gzip
+  grep
+  gnu-indent
+  gnu-sed
+  gnu-tar
+  gnu-which
+  gnutls
+  file-formula
+  less
+  openssh
+  unzip
+  node
 )
 
 echo "installing binaries..."
-brew install ${binaries[@]}
+brew install ${binaries[@]} --with-default-names
 
-brew install homebrew/dupes/grep
 brew cleanup
 brew tap caskroom/cask
 
@@ -120,7 +133,14 @@ brew tap caskroom/versions
 echo "please setup dropbox"
 read -p "Press enter to continue"
 
+pips=(
+  ansible
+  mackup
+  requests
+  httpie
+)
+
 sudo easy_install pip
 pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
-pip install mackup
+pip install ${pips[@]}
 mackup restore -f

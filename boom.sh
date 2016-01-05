@@ -91,6 +91,8 @@ binaries=(
   openssh
   unzip
   node
+  rbenv
+  ruby-build
 )
 
 echo "installing binaries..."
@@ -138,9 +140,33 @@ pips=(
   mackup
   requests
   httpie
+  flake8
+  saws
 )
 
 sudo easy_install pip
 pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
 pip install ${pips[@]}
 mackup restore -f
+
+rbenv install 2.3.0
+rbenv rehash
+rbenv global 2.3.0
+eval "$(rbenv init -)"
+
+gems=(
+  travis
+)
+
+gem update --system
+gem install ${gems[0]}
+gem update
+
+nm=(
+  tldr
+)
+
+npm update npm -g
+npm install -g ${nm[0]}
+npm update -g
+

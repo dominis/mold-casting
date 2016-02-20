@@ -10,9 +10,6 @@ if [[ $(/usr/bin/fdesetup isactive) == "false" ]]; then
   exit 1
 fi
 
-echo "system update"
-sudo softwareupdate -i -a
-
 if test ! $(which git); then
   echo "Installing commandline utils"
   xcode-select --install
@@ -93,6 +90,8 @@ binaries=(
   node
   rbenv
   ruby-build
+  smartmontools
+  graphviz
 )
 
 echo "installing binaries..."
@@ -125,9 +124,13 @@ apps=(
   forklift
   evernote
   send-to-kindle
+  dockertoolbox
+  textual
+  gitup
 )
 
 echo "installing apps..."
+brew cask cleanup
 brew cask install --appdir="/Applications" ${apps[@]}
 
 brew tap caskroom/versions
@@ -145,17 +148,22 @@ pips=(
 )
 
 sudo easy_install pip
+sudo -H pip install --upgrade pip
 pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
 pip install ${pips[@]}
 mackup restore -f
 
-rbenv install 2.3.0
-rbenv rehash
-rbenv global 2.3.0
-eval "$(rbenv init -)"
+if test ! $(echo $PATH|grep rbenv); then
+  rbenv install 2.3.0
+  rbenv rehash
+  rbenv global 2.3.0
+  eval "$(rbenv init -)"
+fi
 
 gems=(
   travis
+  puppet
+  librarian-puppet
 )
 
 gem update --system
@@ -164,9 +172,14 @@ gem update
 
 nm=(
   tldr
+  aws-cleanup
+  wt-cli
 )
 
 npm update npm -g
 npm install -g ${nm[0]}
 npm update -g
+
+echo "system update"
+sudo softwareupdate -i -a
 

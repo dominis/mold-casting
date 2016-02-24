@@ -106,7 +106,7 @@ apps=(
   slack
   spotify
   vagrant
-  iterm2
+  iterm2-beta
   sublime-text3
   virtualbox
   tower
@@ -127,6 +127,7 @@ apps=(
   dockertoolbox
   textual
   gitup
+  chefdk
 )
 
 echo "installing apps..."

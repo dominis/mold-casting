@@ -92,12 +92,15 @@ binaries=(
   ruby-build
   smartmontools
   graphviz
+  gpg
+  jq
 )
 
 echo "installing binaries..."
 brew install ${binaries[@]} --with-default-names
 
 brew cleanup
+brew prune
 brew tap caskroom/cask
 
 apps=(
@@ -128,6 +131,7 @@ apps=(
   textual
   gitup
   chefdk
+  viscosity
 )
 
 echo "installing apps..."

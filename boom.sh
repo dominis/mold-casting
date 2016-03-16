@@ -132,6 +132,7 @@ apps=(
   gitup
   chefdk
   viscosity
+  heroku-toolbelt
 )
 
 echo "installing apps..."

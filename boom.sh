@@ -127,10 +127,8 @@ apps=(
   forklift
   evernote
   send-to-kindle
-  dockertoolbox
   textual
   gitup
-  chefdk
   viscosity
   heroku-toolbelt
 )

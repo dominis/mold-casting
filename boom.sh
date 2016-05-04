@@ -131,6 +131,7 @@ apps=(
   gitup
   viscosity
   heroku-toolbelt
+  dash
 )
 
 echo "installing apps..."

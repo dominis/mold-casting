@@ -130,7 +130,6 @@ apps=(
   textual
   gitup
   viscosity
-  heroku-toolbelt
   dash
 )
 

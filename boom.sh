@@ -94,6 +94,7 @@ binaries=(
   graphviz
   gpg
   jq
+  imagemagick
 )
 
 echo "installing binaries..."
@@ -168,6 +169,7 @@ gems=(
   travis
   puppet
   librarian-puppet
+  lolcommits
 )
 
 gem update --system

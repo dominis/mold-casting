@@ -68,8 +68,6 @@ binaries=(
   git
   bash-completion
   vagrant-completion
-  docker-completion
-  packer-completion
   pip-completion
   terraform
   packer
@@ -95,6 +93,14 @@ binaries=(
   gpg
   jq
   imagemagick
+  ykpers
+  yubico-piv-tool
+  gnupg
+  gpg-agent
+  keybase
+  pinentry
+  pinentry-mac
+  ssh-copy-id
 )
 
 echo "installing binaries..."
@@ -129,9 +135,10 @@ apps=(
   evernote
   send-to-kindle
   textual
-  gitup
   viscosity
   dash
+  yubikey-neo-manager
+  yubikey-personalization-gui
 )
 
 echo "installing apps..."
@@ -149,7 +156,6 @@ pips=(
   requests
   httpie
   flake8
-  saws
 )
 
 sudo easy_install pip
@@ -167,8 +173,6 @@ fi
 
 gems=(
   travis
-  puppet
-  librarian-puppet
   lolcommits
 )
 
@@ -176,15 +180,15 @@ gem update --system
 gem install ${gems[0]}
 gem update
 
-nm=(
-  tldr
-  aws-cleanup
-  wt-cli
-)
+# nm=(
+#   tldr
+#   aws-cleanup
+#   wt-cli
+# )
 
-npm update npm -g
-npm install -g ${nm[0]}
-npm update -g
+# npm update npm -g
+# npm install -g ${nm[0]}
+# npm update -g
 
 echo "system update"
 sudo softwareupdate -i -a

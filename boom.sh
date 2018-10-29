@@ -101,6 +101,9 @@ binaries=(
   pinentry
   pinentry-mac
   ssh-copy-id
+  netcat
+  socat
+  udptunnel
 )
 
 echo "installing binaries..."
@@ -111,32 +114,38 @@ brew prune
 brew tap caskroom/cask
 
 apps=(
-  dropbox
-  google-chrome
-  slack
-  spotify
-  vagrant
-  iterm2-beta
-  sublime-text3
-  virtualbox
-  tower
-  vlc
-  skype
-  transmission
   1password
   caffeine
-  google-drive
-  handbrake
-  numi
-  spotifree
-  vagrant-bar
   coconutbattery
-  forklift
-  evernote
-  send-to-kindle
-  textual
-  viscosity
   dash
+  dropbox
+  evernote
+  firefox
+  forklift
+  google-chrome
+  google-drive
+  gpgtools
+  handbrake
+  iterm2-beta
+  java
+  macdown
+  mattermost
+  numi
+  send-to-kindle
+  skype
+  slack
+  spotify
+  sublime-text3
+  textual
+  torbrowser
+  tower
+  transmission
+  vagrant
+  vagrant-bar
+  virtualbox
+  viscosity
+  vlc
+  xquartz
   yubikey-neo-manager
   yubikey-personalization-gui
 )
@@ -172,7 +181,6 @@ if test ! $(echo $PATH|grep rbenv); then
 fi
 
 gems=(
-  travis
   lolcommits
 )
 

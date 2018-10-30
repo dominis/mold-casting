@@ -66,7 +66,6 @@ binaries=(
   ykpers
   yubico-piv-tool
   gnupg
-  keybase
   pinentry
   pinentry-mac
   ssh-copy-id
@@ -117,7 +116,7 @@ apps=(
 )
 
 echo "installing apps..."
-brew install --appdir="/Applications" ${apps[@]}
+brew cask install --appdir="/Applications" ${apps[@]}
 
 brew cleanup
 brew prune
@@ -128,7 +127,7 @@ pips=(
 
 sudo easy_install pip
 sudo -H pip install --upgrade pip
-pip install ${pips[@]}
+sudo pip install ${pips[@]}
 
 # Start gpg-agent to be able to ssh to github
 pkill ssh-agent
@@ -140,6 +139,7 @@ export GPG_TTY SSH_AUTH_SOCK
 # Install dotfiles + mackup configs restore
 if test ! -d ~/.dotfiles ; then
   echo "installing dotfiles"
+  ssh-keyscan github.com >> ~/.ssh/known_hosts
   git clone git@github.com:dominis/dotfiles.git ~/.dotfiles
   cd ~/.dotfiles
   sh ./install.sh

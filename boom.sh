@@ -152,11 +152,8 @@ sudo -H pip install --upgrade pip
 pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
 pip install ${pips[@]}
 
-mackup restore -f
+#mackup restore -f
 
-gem update --system
-gem install ${gems[0]}
-gem update
 
 echo "system update"
 sudo softwareupdate -i -a

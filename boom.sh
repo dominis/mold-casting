@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -x
 
 sudo -v
@@ -22,35 +22,18 @@ if test ! $(which brew); then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-
-# if test ! -f ~/.ssh/id_rsa ; then
-#   ssh-keygen -t rsa -b 4096 -C "dominis@haxor.hu"
-#   pbcopy < ~/.ssh/id_rsa.pub
-#   echo "new public key copied to your clipboard"
-#   echo "add it at https://github.com/settings/ssh"
-#   read -p "press enter to continue"
-#   ssh-keyscan github.com >> ~/.ssh/known_hosts
-# fi
-
-# if test ! -d ~/.dotfiles ; then
-#   echo "installing dotfiles"
-#   git clone git@github.com:dominis/dotfiles.git ~/.dotfiles
-#   cd ~/.dotfiles
-#   bash ./install.sh
-#   bash ./.osx
-# fi
-
 # brew
 brew doctor
 brew update
 brew upgrade
-brew tap homebrew/dupes
-brew tap homebrew/completions
+brew tap homebrew/core
+brew tap homebrew/cask
+brew tap homebrew/cask-drivers
+brew tap homebrew/cask-versions
 
 binaries=(
   python
   tree
-  ack
   git
   git-crypt
   nmap
@@ -83,7 +66,6 @@ binaries=(
   ykpers
   yubico-piv-tool
   gnupg
-  gpg-agent
   keybase
   pinentry
   pinentry-mac
@@ -99,10 +81,6 @@ binaries=(
 echo "installing binaries..."
 brew install ${binaries[@]} --with-default-names
 
-brew cleanup
-brew prune
-brew tap caskroom/cask
-
 apps=(
   1password
   caffeine
@@ -117,16 +95,13 @@ apps=(
   skype
   spotify
   textual
-  torbrowser
+  tor-browser
   transmission
   vagrant
   virtualbox
   viscosity
   vlc
   xquartz
-  yubikey-neo-manager
-  yubikey-personalization-gui
-  yubico-authenticator
   opera
   visual-studio-code
   signal
@@ -135,13 +110,17 @@ apps=(
   resilio-sync
   mac2imgur
   copyclip
+  yubico-authenticator
+  yubico-yubikey-manager
+  yubico-yubikey-piv-manager
+  yubico-yubikey-personalization-gui
 )
 
 echo "installing apps..."
-brew cask cleanup
-brew cask install --appdir="/Applications" ${apps[@]}
+brew install --appdir="/Applications" ${apps[@]}
 
-brew tap caskroom/versions
+brew cleanup
+brew prune
 
 pips=(
   ansible
@@ -149,12 +128,27 @@ pips=(
 
 sudo easy_install pip
 sudo -H pip install --upgrade pip
-pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
 pip install ${pips[@]}
 
-#mackup restore -f
+# Start gpg-agent to be able to ssh to github
+pkill ssh-agent
+gpgconf --launch gpg-agent
+GPG_TTY=$(/usr/bin/tty)
+SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+export GPG_TTY SSH_AUTH_SOCK
 
+# Install dotfiles + mackup configs restore
+if test ! -d ~/.dotfiles ; then
+  echo "installing dotfiles"
+  git clone git@github.com:dominis/dotfiles.git ~/.dotfiles
+  cd ~/.dotfiles
+  sh ./install.sh
+  sh ./.macos
+  mackup restore -f
+fi
+
+# Make zsh to default shell
+chsh -s /bin/zsh
 
 echo "system update"
 sudo softwareupdate -i -a
-

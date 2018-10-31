@@ -81,7 +81,7 @@ echo "installing binaries..."
 brew install ${binaries[@]} --with-default-names
 
 apps=(
-  1password
+  1password6
   caffeine
   coconutbattery
   evernote

@@ -85,7 +85,6 @@ apps=(
   caffeine
   coconutbattery
   evernote
-  gpgtools
   handbrake
   iterm2-beta
   java
@@ -129,26 +128,23 @@ sudo easy_install pip
 sudo -H pip install --upgrade pip
 sudo pip install ${pips[@]}
 
-# Start gpg-agent to be able to ssh to github
-pkill ssh-agent
-gpgconf --launch gpg-agent
-GPG_TTY=$(/usr/bin/tty)
-SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
-export GPG_TTY SSH_AUTH_SOCK
 
-# Install dotfiles + mackup configs restore
-if test ! -d ~/.dotfiles ; then
-  echo "installing dotfiles"
-  ssh-keyscan github.com >> ~/.ssh/known_hosts
-  git clone git@github.com:dominis/dotfiles.git ~/.dotfiles
-  cd ~/.dotfiles
-  sh ./install.sh
-  sh ./.macos
+# Download and run macos settings
+curl -s https://raw.githubusercontent.com/dominis/mold-casting/master/macos > /tmp/macos
+sh /tmp/macos
+
+# Get stuff from resilio sync
+read -p "Please run resilio sync. Done? (Yn) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  cp -r ~/Sync/Mackup/.mackup* ~/
   mackup restore -f
 fi
+unset $REPLY
 
 # Make zsh to default shell
-chsh -s /bin/zsh
+sudo hsh -s /bin/zsh
 
 echo "system update"
 sudo softwareupdate -i -a

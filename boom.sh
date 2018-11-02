@@ -1,5 +1,5 @@
 #!/bin/sh
-set -x
+set -e
 
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
@@ -17,6 +17,9 @@ if test ! $(which git); then
   sudo xcodebuild -license
 fi
 
+echo "system update"
+sudo softwareupdate -i -a
+
 if test ! $(which brew); then
   echo "Installing homebrew..."
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -30,6 +33,44 @@ brew tap homebrew/core
 brew tap homebrew/cask
 brew tap homebrew/cask-drivers
 brew tap homebrew/cask-versions
+
+
+apps=(
+  remember-the-milk
+  resilio-sync
+  1password6
+  caffeine
+  coconutbattery
+  evernote
+  handbrake
+  iterm2-beta
+  numi
+  send-to-kindle
+  skype
+  spotify
+  textual
+  tor-browser
+  transmission
+  viscosity
+  vlc
+  opera
+  visual-studio-code
+  signal
+  moom
+  mac2imgur
+  copyclip
+  yubico-authenticator
+  yubico-yubikey-manager
+  yubico-yubikey-piv-manager
+  yubico-yubikey-personalization-gui
+  docker
+  vagrant
+  virtualbox
+  java
+)
+
+echo "installing apps..."
+brew cask install --appdir="/Applications" ${apps[@]}
 
 binaries=(
   python
@@ -74,49 +115,16 @@ binaries=(
   udptunnel
   mackup
   zsh
+  golang
 )
 
-
-echo "installing binaries..."
+echo "installing utils..."
 brew install ${binaries[@]} --with-default-names
 
-apps=(
-  1password6
-  caffeine
-  coconutbattery
-  evernote
-  handbrake
-  iterm2-beta
-  java
-  numi
-  send-to-kindle
-  skype
-  spotify
-  textual
-  tor-browser
-  transmission
-  vagrant
-  virtualbox
-  viscosity
-  vlc
-  xquartz
-  opera
-  visual-studio-code
-  signal
-  moom
-  remember-the-milk
-  resilio-sync
-  mac2imgur
-  copyclip
-  yubico-authenticator
-  yubico-yubikey-manager
-  yubico-yubikey-piv-manager
-  yubico-yubikey-personalization-gui
-)
+# Make zsh to default shell
+sudo hsh -s /bin/zsh
 
-echo "installing apps..."
-brew cask install --appdir="/Applications" ${apps[@]}
-
+# brew cleanup
 brew cleanup
 brew prune
 
@@ -129,10 +137,6 @@ sudo -H pip install --upgrade pip
 sudo pip install ${pips[@]}
 
 
-# Download and run macos settings
-curl -s https://raw.githubusercontent.com/dominis/mold-casting/master/macos > /tmp/macos
-sh /tmp/macos
-
 # Get stuff from resilio sync
 read -p "Please run resilio sync. Done? (Yn) " -n 1 -r
 echo
@@ -143,8 +147,6 @@ then
 fi
 unset $REPLY
 
-# Make zsh to default shell
-sudo hsh -s /bin/zsh
-
-echo "system update"
-sudo softwareupdate -i -a
+# Download and run macos settings
+curl -s https://raw.githubusercontent.com/dominis/mold-casting/master/macos > /tmp/macos
+sh /tmp/macos

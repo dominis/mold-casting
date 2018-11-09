@@ -122,7 +122,8 @@ echo "installing utils..."
 brew install ${binaries[@]} --with-default-names
 
 # Make zsh to default shell
-sudo hsh -s /bin/zsh
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+sudo chsh -s /bin/zsh
 
 # brew cleanup
 brew cleanup

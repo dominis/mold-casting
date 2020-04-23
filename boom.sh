@@ -10,19 +10,12 @@ if [[ $(/usr/bin/fdesetup isactive) == "false" ]]; then
   exit 1
 fi
 
-if test ! $(which git); then
-  echo "Installing commandline utils"
-  xcode-select --install
-  read -p "once it's installed press enter"
-  sudo xcodebuild -license
-fi
-
 echo "system update"
 sudo softwareupdate -i -a
 
 if test ! $(which brew); then
   echo "Installing homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
 # brew
@@ -63,10 +56,15 @@ apps=(
   yubico-yubikey-manager
   yubico-yubikey-piv-manager
   yubico-yubikey-personalization-gui
-  docker
-  vagrant
-  virtualbox
-  java
+  mac2imgur
+  copyclip
+  bartender
+  little-snitch-nightly
+  zoomus
+  slack
+  postman
+  zeplin
+
 )
 
 echo "installing apps..."
@@ -85,9 +83,7 @@ binaries=(
   git-extras
   binutils
   gzip
-  git
   terraform
-  packer
   wget
   watch
   screen
@@ -116,6 +112,20 @@ binaries=(
   mackup
   zsh
   golang
+  minikube
+  skaffold
+  awscli
+  azure-cli
+  ffmpeg
+  helm
+  kubernetes-cli
+  kubernetes-helm
+  mitmproxy
+  mtr
+  node
+  postgresql
+  terraform-docs
+  tree
 )
 
 echo "installing utils..."
@@ -128,15 +138,6 @@ sudo chsh -s /bin/zsh
 # brew cleanup
 brew cleanup
 brew prune
-
-pips=(
-  ansible
-)
-
-sudo easy_install pip
-sudo -H pip install --upgrade pip
-sudo pip install ${pips[@]}
-
 
 # Get stuff from resilio sync
 read -p "Please run resilio sync. Done? (Yn) " -n 1 -r
@@ -151,3 +152,7 @@ unset $REPLY
 # Download and run macos settings
 curl -s https://raw.githubusercontent.com/dominis/mold-casting/master/macos > /tmp/macos
 sh /tmp/macos
+
+curl -s https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-social/hosts > /tmp/hosts
+
+sudo cp /tmp/hosts /etc/hosts

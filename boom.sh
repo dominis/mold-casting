@@ -126,6 +126,7 @@ binaries=(
   postgresql
   terraform-docs
   tree
+  pre-commit
 )
 
 echo "installing utils..."

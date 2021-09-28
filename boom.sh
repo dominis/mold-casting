@@ -38,10 +38,8 @@ apps=(
   handbrake
   iterm2-beta
   numi
-  send-to-kindle
   skype
   spotify
-  textual
   tor-browser
   transmission
   viscosity
@@ -63,8 +61,6 @@ apps=(
   zoomus
   slack
   postman
-  zeplin
-
 )
 
 echo "installing apps..."
@@ -83,7 +79,7 @@ binaries=(
   git-extras
   binutils
   gzip
-  terraform
+  tfenv
   wget
   watch
   screen

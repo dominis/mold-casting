@@ -16,6 +16,8 @@ sudo softwareupdate -i -a
 if test ! $(which brew); then
   echo "Installing homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # brew
@@ -71,7 +73,7 @@ apps=(
 )
 
 echo "installing apps..."
-brew cask install --appdir="/Applications" ${apps[@]}
+brew install --appdir="/Applications" ${apps[@]} --cask
 
 binaries=(
   python@3.7

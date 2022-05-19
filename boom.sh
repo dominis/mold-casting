@@ -71,7 +71,7 @@ apps=(
 )
 
 echo "installing apps..."
-brew install --appdir="/Applications" ${apps[@]} --cask
+brew install ${apps[@]} --cask
 
 binaries=(
   python@3.7
@@ -135,7 +135,7 @@ binaries=(
 )
 
 echo "installing utils..."
-brew install ${binaries[@]} --with-default-names
+brew install ${binaries[@]}
 
 # Make zsh to default shell
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh

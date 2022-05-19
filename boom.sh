@@ -75,7 +75,6 @@ brew install ${apps[@]} --cask
 
 binaries=(
   python@3.7
-  prthon@3.9
   tree
   git
   git-crypt

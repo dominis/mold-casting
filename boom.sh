@@ -50,12 +50,9 @@ apps=(
   mac2imgur
   copyclip
   yubico-authenticator
-  yubico-yubikey-manager
-  yubico-yubikey-piv-manager
-  yubico-yubikey-personalization-gui
   mac2imgur
   bartender
-  little-snitch-nightly
+  little-snitch
   zoomus
   slack
   aws-vpn-client

@@ -29,18 +29,15 @@ brew tap homebrew/cask-versions
 
 
 apps=(
-  remember-the-milk
   resilio-sync
   1password6
   caffeine
   coconutbattery
-  evernote
   handbrake
   iterm2-beta
   numi
   skype
   spotify
-  tor-browser
   transmission
   viscosity
   vlc
@@ -55,19 +52,28 @@ apps=(
   yubico-yubikey-piv-manager
   yubico-yubikey-personalization-gui
   mac2imgur
-  copyclip
   bartender
   little-snitch-nightly
   zoomus
   slack
-  postman
+  aws-vpn-client
+  fsnotes
+  google-chrome
+  firefox
+  logitech-camera-settings
+  microsoft-teams
+  protonmail-bridge
+  rancher
+  secretive
+  session-manager-plugin
 )
 
 echo "installing apps..."
 brew cask install --appdir="/Applications" ${apps[@]}
 
 binaries=(
-  python
+  python@3.7
+  prthon@3.9
   tree
   git
   git-crypt
@@ -96,11 +102,7 @@ binaries=(
   unzip
   gpg
   jq
-  ykpers
-  yubico-piv-tool
   gnupg
-  pinentry
-  pinentry-mac
   ssh-copy-id
   netcat
   socat
@@ -115,7 +117,7 @@ binaries=(
   ffmpeg
   helm
   kubernetes-cli
-  kubernetes-helm
+  helm
   mitmproxy
   mtr
   node
@@ -123,6 +125,11 @@ binaries=(
   terraform-docs
   tree
   pre-commit
+  fzf
+  terraform-docs
+  kube-ps1
+  kubectx
+  kompose
 )
 
 echo "installing utils..."

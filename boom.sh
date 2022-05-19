@@ -66,6 +66,8 @@ apps=(
   rancher
   secretive
   session-manager-plugin
+  adobe-creative-cloud
+  mic-drop
 )
 
 echo "installing apps..."

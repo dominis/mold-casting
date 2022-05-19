@@ -54,7 +54,7 @@ apps=(
   mac2imgur
   bartender
   little-snitch
-  zoomus
+  zoom
   slack
   aws-vpn-client
   fsnotes

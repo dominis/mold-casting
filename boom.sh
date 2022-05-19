@@ -12,7 +12,7 @@ fi
 
 echo "system update"
 sudo softwareupdate -i -a
-sudo softwareupdate --install-rosetta -i -a
+sudo softwareupdate --install-rosetta --agree-to-license
 
 if test ! $(which brew); then
   echo "Installing homebrew..."

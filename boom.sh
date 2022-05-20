@@ -142,7 +142,6 @@ sudo chsh -s /bin/zsh
 
 # brew cleanup
 brew cleanup
-brew prune
 
 # Get stuff from resilio sync
 read -p "Please run resilio sync. Done? (Yn) " -n 1 -r

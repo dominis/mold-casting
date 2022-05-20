@@ -74,7 +74,6 @@ echo "installing apps..."
 brew install ${apps[@]} --cask
 
 binaries=(
-  python@3.7
   python@3.9
   tree
   git

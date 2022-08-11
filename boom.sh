@@ -131,6 +131,7 @@ binaries=(
   kube-ps1
   kubectx
   kompose
+  romkatv/powerlevel10k/powerlevel10k
 )
 
 echo "installing utils..."

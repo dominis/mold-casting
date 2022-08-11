@@ -132,6 +132,7 @@ binaries=(
   kubectx
   kompose
   romkatv/powerlevel10k/powerlevel10k
+  google-cloud-sdk
 )
 
 echo "installing utils..."

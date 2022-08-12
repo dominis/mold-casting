@@ -133,6 +133,8 @@ binaries=(
   kompose
   romkatv/powerlevel10k/powerlevel10k
   google-cloud-sdk
+  k9s
+  stern
 )
 
 echo "installing utils..."

@@ -36,7 +36,6 @@ apps=(
   1password6
   caffeine
   coconutbattery
-  handbrake
   iterm2-beta
   numi
   skype
@@ -48,23 +47,17 @@ apps=(
   visual-studio-code
   signal
   moom
-  mac2imgur
   copyclip
   yubico-authenticator
-  mac2imgur
   bartender
   little-snitch
   zoom
   slack
-  aws-vpn-client
   fsnotes
   google-chrome
-  firefox
   logitech-camera-settings
   microsoft-teams
   protonmail-bridge
-  rancher
-  secretive
   session-manager-plugin
   adobe-creative-cloud
   mic-drop
@@ -135,6 +128,9 @@ binaries=(
   google-cloud-sdk
   k9s
   stern
+  aws-vault
+  1password-cli
+  sops
 )
 
 echo "installing utils..."
